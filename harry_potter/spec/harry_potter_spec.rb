@@ -13,9 +13,12 @@ def harry_potter(book_list)
     5 => FIVE_BOOK_MODIFIER
   }
 
-  number_of_books = book_list.size
-  price_of_books = '%.2f' % ((number_of_books * BOOK_PRICE) * book_modifers.fetch(number_of_books))
-  return "£" + price_of_books.to_s
+  number_of_unique_books = book_list.uniq.size
+  number_of_duplicate_books = book_list.size - number_of_unique_books
+  price_of_unique_books = (number_of_unique_books * BOOK_PRICE) * book_modifers.fetch(number_of_unique_books)
+  price_of_duplicate_books = number_of_duplicate_books * BOOK_PRICE
+  total_price = '%.2f' % (price_of_unique_books + price_of_duplicate_books)
+  return "£" + total_price.to_s
 end
 
 RSpec.describe "Harry Potter Calculator" do
@@ -26,6 +29,27 @@ RSpec.describe "Harry Potter Calculator" do
 
   it "returns the price of two different books" do
     expect(harry_potter([1,2])).to eq("£15.20")
+  end
+
+  it "returns the price of three different books" do
+    expect(harry_potter([2,3,5])).to eq("£21.60")
+  end
+
+  it "returns the price of four different books" do
+    expect(harry_potter([1,2,4,5])).to eq("£25.60")
+  end
+
+  it "returns the price of five different books" do
+    expect(harry_potter([1,2,3,4,5])).to eq("£30.00")
+  end
+
+  it "does not discount duplicate books" do
+    expect(harry_potter([1,2,2])).to eq("£23.20")
+  end
+
+  it "finds the biggest discount in a selection of books" do
+    expect(harry_potter([1,1,2,2])).to eq("£30.40")
+    expect(harry_potter([1,1,2,2,3,3,4,5])).to eq("£51.20")
   end
 
 end
