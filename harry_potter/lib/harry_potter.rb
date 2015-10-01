@@ -1,16 +1,25 @@
-BOOK_PRICE = 8
-BOOK_MODIFIERS = {
-  1 => 1,
-  2 => 0.95,
-  3 => 0.9,
-  4 => 0.8,
-  5 => 0.75
-}
+class HarryPotterOffer
+  def add(book_list)
+    book_list.sort!
+    unique_groups = create_uniqe_groups(book_list)
+    test_for_edge_case(unique_groups)
+    total_price = get_total_price(unique_groups)
+    format_price(total_price)
+  end
 
-class Basket
-  def calculate_price(book_list)
-    price_of_books = (book_list.size * BOOK_PRICE) * BOOK_MODIFIERS.fetch(book_list.size)
-    return price_of_books
+  def create_uniqe_groups(book_list)
+    unique_groups = []
+
+    while book_list.uniq.size < book_list.size do
+      unique_list = book_list.uniq
+      unique_groups << unique_list
+      unique_list.each do |item|
+        i = book_list.find_index(item)
+        book_list.delete_at(i)
+      end
+    end
+
+    unique_groups << book_list
   end
 
   def test_for_edge_case(unique_groups)
@@ -31,33 +40,32 @@ class Basket
     end
   end
 
-  def create_uniqe_groups(book_list)
-    unique_groups = []
-
-    while book_list.uniq.size < book_list.size do
-      unique_list = book_list.uniq
-      unique_groups << unique_list
-      unique_list.each do |item|
-        i = book_list.find_index(item)
-        book_list.delete_at(i)
-      end
-    end
-
-    unique_groups << book_list
-    return unique_groups
-  end
-
-  def harry_potter(book_list)
-    book_list.sort!
-    unique_groups = create_uniqe_groups(book_list)
-
-    test_for_edge_case(unique_groups)
-
-    total_price = unique_groups.inject(0) do |sum, item|
+  def get_total_price(unique_groups)
+    unique_groups.inject(0) do |sum, item|
       price = calculate_price(item)
       sum + price
     end
+  end
 
-    return "£" + ('%.2f' % total_price)
+  def calculate_price(book_list)
+    (book_list.size * book_price) * price_modifiers.fetch(book_list.size)
+  end
+
+  def format_price(total_price)
+    "£" + ('%.2f' % total_price)
+  end
+
+  def book_price
+    8
+  end
+
+  def price_modifiers
+    {
+      1 => 1,
+      2 => 0.95,
+      3 => 0.9,
+      4 => 0.8,
+      5 => 0.75
+    }
   end
 end
