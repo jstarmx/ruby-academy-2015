@@ -13,31 +13,13 @@ class HarryPotterOffer
     while book_list.uniq.size < book_list.size do
       unique_list = book_list.uniq
       unique_groups << unique_list
-      unique_list.each do |item|
+      unique_list.each_with_index do |item|
         i = book_list.find_index(item)
         book_list.delete_at(i)
       end
     end
 
     unique_groups << book_list
-  end
-
-  def test_for_edge_case(unique_groups)
-    group_sizes = []
-    five_location = -1
-    three_location = -1
-    unique_groups.each_with_index do |item, index|
-      if item.size == 5
-        five_location = index
-      elsif item.size == 3
-        three_location = index
-      end
-    end
-
-    if five_location >= 0 && three_location >= 0
-      item_to_move = unique_groups[five_location].pop
-      unique_groups[three_location].push(item_to_move)
-    end
   end
 
   def get_total_price(unique_groups)
@@ -67,5 +49,50 @@ class HarryPotterOffer
       4 => 0.8,
       5 => 0.75
     }
+  end
+
+  def test_for_edge_case(unique_groups)
+    group_sizes = []
+    five_location = -1
+    three_location = -1
+    unique_groups.each_with_index do |item, index|
+      if item.size == 5
+        five_location = index
+      elsif item.size == 3
+        three_location = index
+      end
+    end
+
+    test_finished = false
+    while test_finished == false do
+      five_location = -1
+      three_location = -1
+      unique_groups.each_with_index do |item, index|
+        if item.size == 5
+          five_location = index
+          break
+        end
+      end
+      if five_location >= 0
+        unique_groups.each_with_index do |item, index|
+          if item.size == 3
+            three_location = index
+            break
+          end
+        end
+        if three_location >= 0
+          unique_groups[five_location].each_with_index do |item, index|
+            if unique_groups[three_location].include?(item) == false
+              unique_groups[three_location].push(item)
+              unique_groups[five_location].delete_at(index)
+              break
+            end
+          end
+        end
+      end
+      if five_location == -1 || three_location == -1
+        break
+      end
+    end
   end
 end

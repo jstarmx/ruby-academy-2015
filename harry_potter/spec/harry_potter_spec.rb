@@ -36,7 +36,14 @@ RSpec.describe "Harry Potter Calculator" do
     harry_potter_offer = HarryPotterOffer.new
     expect(harry_potter_offer.add([1,1,2,2])).to eq("£30.40")
     expect(harry_potter_offer.add([1,1,2,2,3,3,4,5])).to eq("£51.20")
-    # expect(harry_potter_offer.add([1,1,2,2,3,3,4,5,1,1,2,2,3,3,4,5])).to eq("£102.40")
+    expect(harry_potter_offer.add([1,1,2,2,3,3,4,5,1,1,2,2,3,3,4,5])).to eq("£102.40")
+    expect(harry_potter_offer.add([
+      1, 1, 1, 1, 1,
+      2, 2, 2, 2, 2,
+      3, 3, 3, 3,
+      4, 4, 4, 4, 4,
+      5, 5, 5, 5
+    ])).to eq("£141.20") # 3 * (8 * 5 * 0.75) + 2 * (8 * 4 * 0.8)
   end
 
 end
