@@ -1,63 +1,76 @@
-require 'word'
+require_relative 'word'
 
 class Game
-  def initialize(word, board)
-    @word = Word.new(word)
+  attr_reader :incorrect_guesses
+
+  def play(word)
+    @correct_word = ''
     @correct_guesses = {}
     @incorrect_guesses = []
-    @board = board
+    @word = Word.new(word)
   end
 
-  def start
-    draw
-  end
-
-  def guess(letter)
-    if is_repeat_guess?(letter)
-      @board.repeat_guess(letter)
-      return
+  def guess(input)
+    unless invalid_guess?(input) || repeat_guess?(input)
+      if @word.match?(input)
+        add_correct_guess(input)
+      else
+        add_incorrect_guess(input)
+      end
     end
+  end
 
-    indexes = @word.letter_indexes(letter)
-
-    if indexes.any?
-      add_correct_guess(letter, indexes)
+  def state
+    if @correct_word.length > 1
+      @correct_word
     else
-      add_incorrect_guess(letter)
+      @word.state(@correct_guesses)
     end
-
-    draw
   end
 
-  def draw
-    @board.draw(@word.state(@correct_guesses), @incorrect_guesses)
+  def incorrect_guesses_count
+    @incorrect_guesses.size
+  end
+
+  def incorrect_guesses_string
+    @incorrect_guesses.join(', ')
+  end
+
+  def finished?
+    won? || lost?
+  end
+
+  def won?
+    @word.word == @correct_word || @word.complete?(@correct_guesses)
+  end
+
+  def lost?
+    incorrect_guesses_count == incorrect_guess_limit
+  end
+
+  def repeat_guess?(input)
+    @incorrect_guesses.include?(input) || @correct_guesses.fetch(input, false)
+  end
+
+  def invalid_guess?(input)
+    (input.length > 1 && input.length != @word.word.length) || input[/^[a-zA-Z]+$/].nil?
   end
 
   private
 
-  def is_repeat_guess?(letter)
-    @incorrect_guesses.include?(letter) || @correct_guesses.fetch(letter, false)
-  end
-
-  def add_correct_guess(letter, indexes)
-    @correct_guesses[letter] = indexes
-    if @word.complete?(@correct_guesses)
-      @board.game_won
+  def add_correct_guess(input)
+    if input.size > 1
+      @correct_word = input
+    else
+      @correct_guesses[input] = @word.letter_indexes(input)
     end
   end
 
-  def add_incorrect_guess(letter)
-    @incorrect_guesses << letter
-    if incorrect_guess_limit_exceeded?
-      @board.game_lost
-    end
-  end
-
-  def incorrect_guess_limit_exceeded?
-    @incorrect_guesses.size == incorrect_guess_limit
+  def add_incorrect_guess(input)
+    @incorrect_guesses << input
   end
 
   def incorrect_guess_limit
-    9
+    11
   end
 end

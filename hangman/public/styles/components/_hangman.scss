@@ -1,0 +1,258 @@
+.hangman {
+  padding: 1em 0;
+  text-align: center;
+
+  &__image {
+    display: inline-block;
+    height: 18em;
+    position: relative;
+    width: 20em;
+
+    &--1 {
+      .hangman__gallows-base {
+        display: block;
+      }
+    }
+
+    &--2 {
+      .hangman__gallows-base,
+      .hangman__gallows-pole {
+        display: block;
+      }
+    }
+
+    &--3 {
+      .hangman__gallows-base,
+      .hangman__gallows-pole,
+      .hangman__gallows-arm {
+        display: block;
+      }
+    }
+
+    &--4 {
+      .hangman__gallows-base,
+      .hangman__gallows-pole,
+      .hangman__gallows-arm,
+      .hangman__gallows-support {
+        display: block;
+      }
+    }
+
+    &--5 {
+      .hangman__gallows-base,
+      .hangman__gallows-pole,
+      .hangman__gallows-arm,
+      .hangman__gallows-support,
+      .hangman__gallows-rope {
+        display: block;
+      }
+    }
+
+    &--6 {
+      .hangman__gallows-base,
+      .hangman__gallows-pole,
+      .hangman__gallows-arm,
+      .hangman__gallows-support,
+      .hangman__gallows-rope,
+      .hangman__man-head {
+        display: block;
+      }
+    }
+
+    &--7 {
+      .hangman__gallows-base,
+      .hangman__gallows-pole,
+      .hangman__gallows-arm,
+      .hangman__gallows-support,
+      .hangman__gallows-rope,
+      .hangman__man-head,
+      .hangman__man-body {
+        display: block;
+      }
+    }
+
+    &--8 {
+      .hangman__gallows-base,
+      .hangman__gallows-pole,
+      .hangman__gallows-arm,
+      .hangman__gallows-support,
+      .hangman__gallows-rope,
+      .hangman__man-head,
+      .hangman__man-body,
+      .hangman__man-arm-left {
+        display: block;
+      }
+    }
+
+    &--9 {
+      .hangman__gallows-base,
+      .hangman__gallows-pole,
+      .hangman__gallows-arm,
+      .hangman__gallows-support,
+      .hangman__gallows-rope,
+      .hangman__man-head,
+      .hangman__man-body,
+      .hangman__man-arm-left,
+      .hangman__man-arm-right {
+        display: block;
+      }
+    }
+
+    &--10 {
+      .hangman__gallows-base,
+      .hangman__gallows-pole,
+      .hangman__gallows-arm,
+      .hangman__gallows-support,
+      .hangman__gallows-rope,
+      .hangman__man-head,
+      .hangman__man-body,
+      .hangman__man-arm-left,
+      .hangman__man-arm-right,
+      .hangman__man-leg-left {
+        display: block;
+      }
+    }
+
+    &--11 {
+      .hangman__gallows-base,
+      .hangman__gallows-pole,
+      .hangman__gallows-arm,
+      .hangman__gallows-support,
+      .hangman__gallows-rope,
+      .hangman__man-head,
+      .hangman__man-body,
+      .hangman__man-arm-left,
+      .hangman__man-arm-right,
+      .hangman__man-leg-left,
+      .hangman__man-leg-right {
+        display: block;
+      }
+    }
+
+    &--dead {
+      .hangman__image__item {
+        border-color: #a94442;
+        background-color: #a94442;
+      }
+    }
+
+    &__item {
+      background-color: #000000;
+      display: none;
+      position: absolute;
+    }
+  }
+  &__gallows {
+    &-base {
+      bottom: 5%;
+      height: 5px;
+      left: 5%;
+      width: 30%;
+    }
+
+    &-pole {
+      height: 90%;
+      left: 19%;
+      top: 5%;
+      width: 5px;
+    }
+
+    &-arm {
+      height: 5px;
+      left: 19%;
+      top: 5%;
+      width: 70%;
+    }
+
+    &-support {
+      height: 5px;
+      left: 18%;
+      top: 11%;
+      transform: rotate(135deg);
+      width: 15%;
+    }
+
+    &-rope {
+      height: 10%;
+      left: 55%;
+      top: 5%;
+      width: 5px;
+    }
+  }
+
+  &__man {
+    &-head {
+      background: none;
+      border-radius: 100%;
+      border: 5px solid #000000;
+      height: 3em;
+      left: 56%;
+      margin-left: -1.5em;
+      top: 15%;
+      width: 3em;
+    }
+
+    &-body {
+      height: 30%;
+      left: 55%;
+      top: 30%;
+      width: 5px;
+    }
+
+    &-arm-left {
+      height: 5px;
+      left: 40%;
+      top: 40%;
+      width: 17%;
+    }
+
+    &-arm-right {
+      height: 5px;
+      left: 55%;
+      top: 40%;
+      width: 17%;
+    }
+
+    &-leg-right {
+      height: 5px;
+      left: 49%;
+      top: 69%;
+      transform: rotate(68deg);
+      width: 23%;
+    }
+
+    &-leg-left {
+      height: 5px;
+      left: 40%;
+      top: 69%;
+      transform: rotate(-68deg);
+      width: 23%;
+    }
+  }
+
+  &__word {
+    color: #000000;
+    font-size: 3.6em;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    padding: 0.25em 0 0.5em 0;
+    text-align: center;
+  }
+
+  &__incorrect-guesses {
+    background: #eeeeee;
+    margin-bottom: 1em;
+    padding: 1em;
+    text-align: center;
+
+    &__list {
+      font-weight: bold;
+      margin-left: 1em;
+    }
+  }
+
+  &__buttons {
+    text-align: center;
+  }
+}
+

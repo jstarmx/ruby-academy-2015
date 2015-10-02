@@ -1,0 +1,52 @@
+<%= erb :'partials/header' %>
+  <div class="container">
+    <div class="hangman">
+      <div class="hangman__image hangman__image--<%= game.incorrect_guesses_count %> <%= "hangman__image--dead" if game.lost? %>">
+        <span class="hangman__image__item hangman__gallows-base"></span>
+        <span class="hangman__image__item hangman__gallows-pole"></span>
+        <span class="hangman__image__item hangman__gallows-arm"></span>
+        <span class="hangman__image__item hangman__gallows-support"></span>
+        <span class="hangman__image__item hangman__gallows-rope"></span>
+        <span class="hangman__image__item hangman__man-head"></span>
+        <span class="hangman__image__item hangman__man-body"></span>
+        <span class="hangman__image__item hangman__man-arm-left"></span>
+        <span class="hangman__image__item hangman__man-arm-right"></span>
+        <span class="hangman__image__item hangman__man-leg-left"></span>
+        <span class="hangman__image__item hangman__man-leg-right"></span>
+      </div>
+      <div class="hangman__word"><%= game.state %></div>
+      <% if game.incorrect_guesses_count > 0 %>
+      <div class="hangman__incorrect-guesses">
+        Incorrect Guesses (<%= game.incorrect_guesses_count %>): <span class="hangman__incorrect-guesses__list"><%= game.incorrect_guesses_string %></span>
+      </div>
+      <% end %>
+      <div class="hangman__buttons">
+        <% unless game.finished? %>
+          <% if error_message.length > 0 %>
+            <div class="alert alert-warning">
+              <%= error_message %>
+            </div>
+          <% end %>
+          <form method="POST" action="/guess/" class="form-inline">
+            <div class="form-group">
+              <input type="text" class="form-control" id="input" name="input" placeholder="Your guess">
+            </div>
+            <button type="submit" class="btn btn-success">Guess</button>
+          </form>
+        <% else %>
+          <% if game.won? %>
+            <div class="alert alert-success" role="alert">
+              <strong>Well done!</strong> you won!
+            </div>
+          <% else %>
+            <div class="alert alert-danger " role="alert">
+              <strong>You suck!</strong> Better luck next time!
+            </div>
+          <% end %>
+
+          <a href="/" class="btn btn-success">Play Again</a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<%= erb :'partials/footer' %>

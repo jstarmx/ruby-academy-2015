@@ -1,0 +1,182 @@
+.hangman {
+  padding: 1em 0;
+  text-align: center; }
+  .hangman__image {
+    display: inline-block;
+    height: 18em;
+    position: relative;
+    width: 20em; }
+    .hangman__image--1 .hangman__gallows-base {
+      display: block; }
+    .hangman__image--2 .hangman__gallows-base,
+    .hangman__image--2 .hangman__gallows-pole {
+      display: block; }
+    .hangman__image--3 .hangman__gallows-base,
+    .hangman__image--3 .hangman__gallows-pole,
+    .hangman__image--3 .hangman__gallows-arm {
+      display: block; }
+    .hangman__image--4 .hangman__gallows-base,
+    .hangman__image--4 .hangman__gallows-pole,
+    .hangman__image--4 .hangman__gallows-arm,
+    .hangman__image--4 .hangman__gallows-support {
+      display: block; }
+    .hangman__image--5 .hangman__gallows-base,
+    .hangman__image--5 .hangman__gallows-pole,
+    .hangman__image--5 .hangman__gallows-arm,
+    .hangman__image--5 .hangman__gallows-support,
+    .hangman__image--5 .hangman__gallows-rope {
+      display: block; }
+    .hangman__image--6 .hangman__gallows-base,
+    .hangman__image--6 .hangman__gallows-pole,
+    .hangman__image--6 .hangman__gallows-arm,
+    .hangman__image--6 .hangman__gallows-support,
+    .hangman__image--6 .hangman__gallows-rope,
+    .hangman__image--6 .hangman__man-head {
+      display: block; }
+    .hangman__image--7 .hangman__gallows-base,
+    .hangman__image--7 .hangman__gallows-pole,
+    .hangman__image--7 .hangman__gallows-arm,
+    .hangman__image--7 .hangman__gallows-support,
+    .hangman__image--7 .hangman__gallows-rope,
+    .hangman__image--7 .hangman__man-head,
+    .hangman__image--7 .hangman__man-body {
+      display: block; }
+    .hangman__image--8 .hangman__gallows-base,
+    .hangman__image--8 .hangman__gallows-pole,
+    .hangman__image--8 .hangman__gallows-arm,
+    .hangman__image--8 .hangman__gallows-support,
+    .hangman__image--8 .hangman__gallows-rope,
+    .hangman__image--8 .hangman__man-head,
+    .hangman__image--8 .hangman__man-body,
+    .hangman__image--8 .hangman__man-arm-left {
+      display: block; }
+    .hangman__image--9 .hangman__gallows-base,
+    .hangman__image--9 .hangman__gallows-pole,
+    .hangman__image--9 .hangman__gallows-arm,
+    .hangman__image--9 .hangman__gallows-support,
+    .hangman__image--9 .hangman__gallows-rope,
+    .hangman__image--9 .hangman__man-head,
+    .hangman__image--9 .hangman__man-body,
+    .hangman__image--9 .hangman__man-arm-left,
+    .hangman__image--9 .hangman__man-arm-right {
+      display: block; }
+    .hangman__image--10 .hangman__gallows-base,
+    .hangman__image--10 .hangman__gallows-pole,
+    .hangman__image--10 .hangman__gallows-arm,
+    .hangman__image--10 .hangman__gallows-support,
+    .hangman__image--10 .hangman__gallows-rope,
+    .hangman__image--10 .hangman__man-head,
+    .hangman__image--10 .hangman__man-body,
+    .hangman__image--10 .hangman__man-arm-left,
+    .hangman__image--10 .hangman__man-arm-right,
+    .hangman__image--10 .hangman__man-leg-left {
+      display: block; }
+    .hangman__image--11 .hangman__gallows-base,
+    .hangman__image--11 .hangman__gallows-pole,
+    .hangman__image--11 .hangman__gallows-arm,
+    .hangman__image--11 .hangman__gallows-support,
+    .hangman__image--11 .hangman__gallows-rope,
+    .hangman__image--11 .hangman__man-head,
+    .hangman__image--11 .hangman__man-body,
+    .hangman__image--11 .hangman__man-arm-left,
+    .hangman__image--11 .hangman__man-arm-right,
+    .hangman__image--11 .hangman__man-leg-left,
+    .hangman__image--11 .hangman__man-leg-right {
+      display: block; }
+    .hangman__image--dead .hangman__image__item {
+      border-color: #a94442;
+      background-color: #a94442; }
+    .hangman__image__item {
+      background-color: #000000;
+      display: none;
+      position: absolute; }
+  .hangman__gallows-base {
+    bottom: 5%;
+    height: 5px;
+    left: 5%;
+    width: 30%; }
+  .hangman__gallows-pole {
+    height: 90%;
+    left: 19%;
+    top: 5%;
+    width: 5px; }
+  .hangman__gallows-arm {
+    height: 5px;
+    left: 19%;
+    top: 5%;
+    width: 70%; }
+  .hangman__gallows-support {
+    height: 5px;
+    left: 18%;
+    top: 11%;
+    transform: rotate(135deg);
+    width: 15%; }
+  .hangman__gallows-rope {
+    height: 10%;
+    left: 55%;
+    top: 5%;
+    width: 5px; }
+  .hangman__man-head {
+    background: none;
+    border-radius: 100%;
+    border: 5px solid #000000;
+    height: 3em;
+    left: 56%;
+    margin-left: -1.5em;
+    top: 15%;
+    width: 3em; }
+  .hangman__man-body {
+    height: 30%;
+    left: 55%;
+    top: 30%;
+    width: 5px; }
+  .hangman__man-arm-left {
+    height: 5px;
+    left: 40%;
+    top: 40%;
+    width: 17%; }
+  .hangman__man-arm-right {
+    height: 5px;
+    left: 55%;
+    top: 40%;
+    width: 17%; }
+  .hangman__man-leg-right {
+    height: 5px;
+    left: 49%;
+    top: 69%;
+    transform: rotate(68deg);
+    width: 23%; }
+  .hangman__man-leg-left {
+    height: 5px;
+    left: 40%;
+    top: 69%;
+    transform: rotate(-68deg);
+    width: 23%; }
+  .hangman__word {
+    color: #000000;
+    font-size: 3.6em;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    padding: 0.25em 0 0.5em 0;
+    text-align: center; }
+  .hangman__incorrect-guesses {
+    background: #eeeeee;
+    margin-bottom: 1em;
+    padding: 1em;
+    text-align: center; }
+    .hangman__incorrect-guesses__list {
+      font-weight: bold;
+      margin-left: 1em; }
+  .hangman__buttons {
+    text-align: center; }
+
+* {
+  box-sizing: border-box; }
+
+body {
+  background-color: #eeeeee; }
+
+.container {
+  background-color: #ffffff; }
+
+/*# sourceMappingURL=main.css.map */

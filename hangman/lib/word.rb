@@ -15,6 +15,14 @@ class Word
     word_state.join
   end
 
+  def match?(input)
+    if input.size > 1
+      @word == input
+    else
+      letter_indexes(input).size > 0
+    end
+  end
+
   def complete?(correct_guesses)
     correct_guesses.values.flatten.size == @word.size
   end
