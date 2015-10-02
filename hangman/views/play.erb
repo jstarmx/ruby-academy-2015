@@ -22,9 +22,9 @@
       <% end %>
       <div class="hangman__buttons">
         <% unless game.finished? %>
-          <% if error_message.length > 0 %>
+          <% if error_msg.length > 0 %>
             <div class="alert alert-warning">
-              <%= error_message %>
+              <%= error_msg %>
             </div>
           <% end %>
           <form method="POST" action="/guess/" class="form-inline">
@@ -36,7 +36,7 @@
         <% else %>
           <% if game.won? %>
             <div class="alert alert-success" role="alert">
-              <strong>Well done!</strong> you won!
+              <strong>Well done!</strong> You won!
             </div>
           <% else %>
             <div class="alert alert-danger " role="alert">
